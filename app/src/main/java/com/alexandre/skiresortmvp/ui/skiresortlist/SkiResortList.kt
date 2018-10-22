@@ -9,4 +9,8 @@ interface SkiResortList {
     interface Presenter {
         fun load()
     }
+
+    interface Interactor {
+        fun load()
+    }
 }

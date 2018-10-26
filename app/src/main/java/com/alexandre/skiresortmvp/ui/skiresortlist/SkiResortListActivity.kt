@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.alexandre.skiresortmvp.R
+import com.alexandre.skiresortmvp.domain.SkiResort
 
 class SkiResortListActivity : AppCompatActivity(), SkiResortList.View {
 
@@ -17,7 +18,7 @@ class SkiResortListActivity : AppCompatActivity(), SkiResortList.View {
         presenter.load()
     }
 
-    override fun display() {
-        Toast.makeText(this, "loaded", Toast.LENGTH_SHORT).show()
+    override fun display(skiResortList: List<SkiResort>) {
+        Toast.makeText(this, "loaded" + skiResortList.size, Toast.LENGTH_SHORT).show()
     }
 }

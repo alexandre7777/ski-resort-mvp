@@ -9,6 +9,10 @@ import java.util.concurrent.Executor
 class SkiResortListInteractor(private val presenter: SkiResortListPresenter, private val skiResortListService: SkiResortListService, private val skiResortDao: SkiResortDao, private val ioExecutor: Executor) : SkiResortList.Interactor {
 
     override fun load(){
+        ioExecutor.execute {
+            presenter.callback(toViewModelFromDb(skiResortDao.getAllSkiResorts()))
+        }
+
         requestSkiResort(skiResortListService, {
                 skiResorts ->
                 ioExecutor.execute {
@@ -37,6 +41,20 @@ class SkiResortListInteractor(private val presenter: SkiResortListPresenter, pri
     private fun toDbModel(skiResortList: List<SkiResort>) : List<com.alexandre.skiresortmvp.data.db.model.SkiResort> {
         return skiResortList.map {
             com.alexandre.skiresortmvp.data.db.model.SkiResort(
+                it.skiResortId,
+                it.name,
+                it.country,
+                it.mountainRange,
+                it.slopeKm,
+                it.lifts,
+                it.slopes
+            )
+        }
+    }
+
+    private fun toViewModelFromDb(skiResortList: List<com.alexandre.skiresortmvp.data.db.model.SkiResort>) : List<com.alexandre.skiresortmvp.domain.SkiResort> {
+        return skiResortList.map {
+            com.alexandre.skiresortmvp.domain.SkiResort(
                 it.skiResortId,
                 it.name,
                 it.country,

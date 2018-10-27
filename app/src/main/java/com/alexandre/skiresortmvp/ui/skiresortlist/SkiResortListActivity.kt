@@ -17,7 +17,7 @@ class SkiResortListActivity : AppCompatActivity(), SkiResortList.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ski_resort_list)
 
-        presenter = SkiResortListPresenter(this)
+        presenter = SkiResortListPresenter(this, application)
         presenter.load()
 
         initAdapter()

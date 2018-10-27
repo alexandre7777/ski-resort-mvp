@@ -9,7 +9,10 @@ import java.util.concurrent.Executors
 
 class SkiResortListPresenter(private val view: SkiResortList.View, private val application: Application) : Presenter {
 
-    private val interactor: SkiResortListInteractor = SkiResortListInteractor(this, SkiResortListService.create(), SkiResortDatabase.getInstance(application).skiResortDao(), Executors.newSingleThreadExecutor())
+    private val interactor: SkiResortListInteractor = SkiResortListInteractor(this,
+        SkiResortListService.create(),
+        SkiResortDatabase.getInstance(application).skiResortDao(),
+        Executors.newSingleThreadExecutor())
 
     override fun load() {
         interactor.load()

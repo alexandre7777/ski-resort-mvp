@@ -17,8 +17,8 @@ class SkiResortListActivity : AppCompatActivity(), SkiResortList.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ski_resort_list)
 
-        presenter = SkiResortListPresenter(this)
-        presenter.load()
+        presenter = SkiResortListPresenter(this, application)
+        presenter.requestSkiResortList()
 
         initAdapter()
     }
@@ -28,7 +28,7 @@ class SkiResortListActivity : AppCompatActivity(), SkiResortList.View {
         list.adapter = adapter
     }
 
-    override fun display(skiResortList: List<SkiResort>) {
+    override fun displaySkiResortList(skiResortList: List<SkiResort>) {
         adapter.submitList(skiResortList)
     }
 }

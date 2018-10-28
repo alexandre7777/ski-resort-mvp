@@ -5,14 +5,18 @@ import com.alexandre.skiresortmvp.domain.SkiResort
 interface SkiResortList {
 
     interface View {
-        fun display(skiResortList: List<SkiResort>)
+        fun displaySkiResortList(skiResortList: List<SkiResort>)
     }
 
     interface Presenter {
-        fun load()
+        fun requestSkiResortList()
     }
 
     interface Interactor {
-        fun load()
+        fun loadSkiResortList()
+    }
+
+    interface InteractorCallback {
+        fun responseSkiResortList(skiResortList: List<SkiResort>)
     }
 }

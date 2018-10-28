@@ -15,4 +15,8 @@ interface SkiResortList {
     interface Interactor {
         fun load()
     }
+
+    interface InteractorCallback {
+        fun callback(skiResortList: List<SkiResort>)
+    }
 }

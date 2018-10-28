@@ -7,7 +7,7 @@ import com.alexandre.skiresortmvp.data.network.requestSkiResort
 import java.util.concurrent.Executor
 
 class SkiResortListInteractor(
-    private val presenter: SkiResortListPresenter,
+    private val presenter: SkiResortList.InteractorCallback,
     private val skiResortListService: SkiResortListService,
     private val skiResortDao: SkiResortDao,
     private val ioExecutor: Executor) : SkiResortList.Interactor {

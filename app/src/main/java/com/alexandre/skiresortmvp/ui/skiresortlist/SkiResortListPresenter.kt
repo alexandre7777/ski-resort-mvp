@@ -11,11 +11,11 @@ class SkiResortListPresenter(private val view: SkiResortList.View, application: 
 
     private val interactor = Injection.provideSkiResortListInteractor(application, this)
 
-    override fun load() {
-        interactor.load()
+    override fun requestSkiResortList() {
+        interactor.loadSkiResortList()
     }
 
-    override fun callback(skiResortList: List<SkiResort>) {
-        view.display(skiResortList)
+    override fun responseSkiResortList(skiResortList: List<SkiResort>) {
+        view.displaySkiResortList(skiResortList)
     }
 }

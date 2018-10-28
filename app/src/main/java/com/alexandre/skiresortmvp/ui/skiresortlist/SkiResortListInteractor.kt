@@ -12,10 +12,10 @@ class SkiResortListInteractor(
     private val skiResortDao: SkiResortDao,
     private val ioExecutor: Executor) : SkiResortList.Interactor {
 
-    override fun load(){
+    override fun loadSkiResortList(){
         //get data from db
         ioExecutor.execute {
-            presenter.callback(toViewModelFromDb(skiResortDao.getAllSkiResorts()))
+            presenter.responseSkiResortList(toViewModelFromDb(skiResortDao.getAllSkiResorts()))
         }
 
         //get data from network
@@ -24,7 +24,7 @@ class SkiResortListInteractor(
                 ioExecutor.execute {
                     skiResortDao.insertAll(toDbModel(skiResorts))
                 }
-                presenter.callback(toViewModel(skiResorts))
+                presenter.responseSkiResortList(toViewModel(skiResorts))
             }, { error ->
 
             })

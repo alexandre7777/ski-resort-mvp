@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.activity_ski_resort_list.*
 
 class SkiResortListActivity : AppCompatActivity(), SkiResortList.View {
 
-    private lateinit var presenter: SkiResortListPresenter
+    private var presenter: SkiResortListPresenter? = null
 
     private var adapter = SkiResortAdapter()
 
@@ -18,7 +18,7 @@ class SkiResortListActivity : AppCompatActivity(), SkiResortList.View {
         setContentView(R.layout.activity_ski_resort_list)
 
         presenter = SkiResortListPresenter(this, application)
-        presenter.requestSkiResortList()
+        presenter?.requestSkiResortList()
 
         initAdapter()
     }
@@ -30,5 +30,10 @@ class SkiResortListActivity : AppCompatActivity(), SkiResortList.View {
 
     override fun displaySkiResortList(skiResortList: List<SkiResort>) {
         adapter.submitList(skiResortList)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter = null
     }
 }

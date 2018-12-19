@@ -9,7 +9,6 @@ interface SkiResortList {
     }
 
     interface Presenter {
-        fun requestSkiResortList()
     }
 
     interface Interactor {

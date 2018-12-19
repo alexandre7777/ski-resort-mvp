@@ -19,6 +19,17 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Val d'Isère" />
 
+    <ImageView
+            android:id="@+id/favoriteIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_star_border_black_24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/favorites"/>
+
     <TextView
         android:id="@+id/countryTxt"
         android:layout_width="0dp"

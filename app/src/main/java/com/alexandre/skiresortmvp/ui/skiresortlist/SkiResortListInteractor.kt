@@ -22,12 +22,29 @@ class SkiResortListInteractor(
         requestSkiResort(skiResortListService, {
                 skiResorts ->
                 ioExecutor.execute {
-                    skiResortDao.insertAll(toDbModel(skiResorts))
+                    skiResortDao.insertAll(prepareInsertWithFavStatus(toDbModel(skiResorts)))
+                    presenter.responseSkiResortList(toViewModelFromDb(skiResortDao.getAllSkiResorts()))
                 }
-                presenter.responseSkiResortList(toViewModel(skiResorts))
             }, { error ->
 
             })
+    }
+
+    override fun toggleFav(skiResort: com.alexandre.skiresortmvp.domain.SkiResort){
+        ioExecutor.execute {
+            skiResortDao.updateFav(skiResort.skiResortId, !skiResort.isFav)
+            presenter.responseSkiResortList(toViewModelFromDb(skiResortDao.getAllSkiResorts()))
+        }
+    }
+
+    private fun prepareInsertWithFavStatus(skiResorts : List<com.alexandre.skiresortmvp.data.db.model.SkiResort>): List<com.alexandre.skiresortmvp.data.db.model.SkiResort> {
+        val mutableIterator = skiResorts.iterator()
+
+        // iterator() extension is called here
+        for (skiResort in mutableIterator) {
+            skiResort.isFav = skiResortDao.isFav(skiResort.skiResortId)
+        }
+        return skiResorts
     }
 
     private fun toViewModel(skiResortList: List<SkiResort>) :
@@ -70,7 +87,8 @@ class SkiResortListInteractor(
                 it.mountainRange,
                 it.slopeKm,
                 it.lifts,
-                it.slopes
+                it.slopes,
+                it.isFav
             )
         }
     }

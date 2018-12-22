@@ -50,7 +50,7 @@ interface SkiResortListService{
     /**
      * Get ski resort list.
      */
-    @GET("v0/b/ski-resort-be7dc.appspot.com/o/resort.json?alt=media&token=3fe8d96d-1d30-47b6-b849-4c5aec831853")
+    @GET("v0/b/ski-resort-be7dc.appspot.com/o/resort-weather.json?alt=media&token=f40092bf-2e06-4077-a84e-0906b834d487")
     fun getSkiResorts(): Call<List<SkiResort>>
 
     companion object {

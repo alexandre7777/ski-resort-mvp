@@ -17,6 +17,12 @@ interface SkiResortDao{
     fun insertAll(skiResortList: List<SkiResort>)
 
     //Get all the ski resorts
-    @Query("SELECT skiResortId, name, country, mountainRange, slopeKm, lifts, slopes FROM ski_resorts")
+    @Query("SELECT skiResortId, name, country, mountainRange, slopeKm, lifts, slopes, isFav FROM ski_resorts")
     fun getAllSkiResorts(): List<SkiResort>
+
+    @Query("UPDATE ski_resorts SET isFav = :isFav WHERE skiResortId = :skiResortId")
+    fun updateFav(skiResortId : Int, isFav : Boolean)
+
+    @Query("SELECT isFav FROM ski_resorts WHERE skiResortId = :skiResortId")
+    fun isFav(skiResortId : Int): Boolean
 }

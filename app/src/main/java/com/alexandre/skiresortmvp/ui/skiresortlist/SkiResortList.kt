@@ -13,6 +13,7 @@ interface SkiResortList {
 
     interface Interactor {
         fun loadSkiResortList()
+        fun toggleFav(skiResort: com.alexandre.skiresortmvp.domain.SkiResort)
     }
 
     interface InteractorCallback {

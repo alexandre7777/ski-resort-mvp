@@ -72,10 +72,9 @@ class SkiResortInteractorTest {
 
         interactor.loadSkiResortList()
 
-        skiResortListService.getSkiResorts()
-
         verify(exactly = 1) { presenter.responseSkiResortList(createExpectedResultDb()) }
         verify(exactly = 1) { presenter.responseSkiResortList(createExpectedResult()) }
+        verify(exactly = 2) { presenter.responseSkiResortList(any()) }
     }
 
 

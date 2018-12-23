@@ -1,6 +1,5 @@
 package com.alexandre.skiresortmvp.data.network
 
-import android.util.Log
 import com.alexandre.skiresortmvp.data.network.model.SkiResort
 import com.alexandre.skiresortmvp.BuildConfig
 import okhttp3.OkHttpClient
@@ -11,8 +10,6 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
-
-private const val TAG = "SkiResortListService"
 
 /**
  * Get all the ski resort
@@ -25,7 +22,6 @@ fun requestSkiResort(
     service.getSkiResorts().enqueue(
             object : Callback<List<SkiResort>> {
                 override fun onFailure(call: Call<List<SkiResort>>?, t: Throwable) {
-                    Log.e(TAG, "fail to get data", t)
                     onError(t.message ?: "unknown error")
                 }
 
@@ -33,7 +29,6 @@ fun requestSkiResort(
                     call: Call<List<SkiResort>>?,
                     response: Response<List<SkiResort>>
                 ) {
-                    Log.d(TAG, "got a response $response")
                     if (response.isSuccessful) {
                         val skiResorts = response.body() ?: emptyList()
                         onSuccess(skiResorts)

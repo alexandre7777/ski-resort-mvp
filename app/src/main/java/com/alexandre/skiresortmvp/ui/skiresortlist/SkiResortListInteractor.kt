@@ -10,7 +10,7 @@ import com.alexandre.skiresortmvp.domain.toViewModelFromDb
 import java.util.concurrent.Executor
 
 class SkiResortListInteractor(
-    private val presenter: SkiResortList.InteractorCallback,
+    private val presenter: SkiResortList.Presenter,
     private val skiResortListService: SkiResortListService,
     private val skiResortDao: SkiResortDao,
     private val ioExecutor: Executor) : SkiResortList.Interactor {
